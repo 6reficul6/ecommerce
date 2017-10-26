@@ -75,8 +75,6 @@ class Products extends Model {
 		switch($extension){
 			case "jpg":
 			
-
-			break;
 			case "jpeg":
 			$image = imagecreatefromjpeg($file["tmp_name"]);
 
@@ -100,6 +98,16 @@ class Products extends Model {
 		$this->checkPhoto();
 
 	}
+
+	public static function checkList($list){
+		foreach ($list as &$row) {
+			$p = new Products();
+			$p->setData($row);
+			$row = $p->getValues();
+		}
+		return $list;
+	}
+
 	
 }
 
